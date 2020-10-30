@@ -4,6 +4,8 @@
 
 For this lab, we will be using the `marketing_customer_analysis.csv` file that you can find in the `files_for_lab` folder.
 
+**Note** - For the next labs we will be using the same data file. Please save the code, so that you can re-use it later in the labs following this lab. 
+
 ### Dealing with the data
 
 1. Show the dataframe shape.
