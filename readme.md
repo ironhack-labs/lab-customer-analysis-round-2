@@ -13,5 +13,5 @@ For this lab, we will be using the `marketing_customer_analysis.csv` file that y
 3. Which columns are numerical?
 4. Which columns are categorical?
 5. Check and deal with `NaN` values.
-6. Datetime format.
+6. Datetime format- Extract the months from the dataset and store in a separate column. Then filter the data to show only the information for the first quarter , ie Jan Feb and March
 7. BONUS: Put all the previously mentioned data transformations into a function.
