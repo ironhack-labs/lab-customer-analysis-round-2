@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 import pandas as pd
 import numpy as np
 
@@ -17,47 +14,64 @@ NEW_COLUMNS = ['index', 'customer', 'state', 'customer_lifetime_value',
               'vehicle_type']
 
 CSV_FILE ="marketing_customer_analysis.csv"
+PERCENTAGE_VALUE = 50
 
 def read_csv(csv_file):
+       print('Reading csv file...')
        df = pd.read_csv(csv_file)
+       print("CSV file imported into a DataFrame")
+       print(df.head())
        return df
 
 df = read_csv(CSV_FILE)
 
-#1.Show the dataframe shape.
+#Show the dataframe shape.
 def show_shape(df):
-       return df.shape
+       return "The shape of the input DataFrame is:", df.shape
 
 print(show_shape(df))
 
-#2.Standardize header names
+#Standardize header names
 
 def rename_columns(new_columns):
        df.columns = new_columns
        return df
 
-#3.Which columns are numerical?
+#Return numeric columns
 
 def get_numeric(df):
        numeric_df = df._get_numeric_data()
-       return numeric_df
+       return "The numeric columns are: ", numeric_df
 
 
-#4. Which columns are categorical?
+#Return categorical columns
 
 def get_categorical(df):
        categorical_df = df.select_dtypes('object')
-       return categorical_df
+       return "The categorical columns are: ", categorical_df
 
 
-#5.Check and deal with NaN values.
+#Check NaN values
 # Percentage of NaN values in each column
 
 def percentage_nan(df):
-       null_df = pd.DataFrame(df.isna().sum()/len(df)*100)
-       return null_df
+       null_df = df.isna().sum()/len(df)*100
+       return "The percentage of missing values is:", null_df
 
-# Drop "vehicle_type" column due to high number of NaN values (>50%).
+print(percentage_nan(df))
+
+# Drop columns with high number of NaN values (>50%).
+
+def drop_columns_nan(df, null_df, percentage_value):
+       for item in null_df.index:
+              print(item)
+              # if null_df.loc[item] > percentage_value:
+                     # print(item)
+                     # df.drop([item], inplace=True, axis=1)
+       # return "Dropping column: ", item, "due to percentage of NaN values greater than:", percentage_value
+       # return df
+print(drop_columns_nan(df, percentage_nan(df), PERCENTAGE_VALUE))
+
 
 # df = df.drop(['vehicle_type'], axis=1)
 
